@@ -1,6 +1,3 @@
-declare const math: any;
-declare const MathJax: any;
-
 type OperationName = 'add' | 'subtract' | 'multiply' | 'divide';
 interface Operation {
 	symbol: string;
@@ -107,6 +104,70 @@ function findLCM(a: number, b: number): number {
 	return min;
 }
 
+document.write(`	<div class="bg-white my-12 shadow-xl rounded-xl max-w-3xl mx-auto py-8">
+			<h1 class="text-2xl text-center mb-8 font-mono font-bold">Fractions Calculator</h1>
+			<div class="flex">
+				<div class="px-8 w-1/2">
+					<div class="flex justify-center space-x-6 mb-10 items-center">
+						<div class="flex flex-col space-y-2">
+							<input
+								id="numeratorA"
+								type="text"
+								class="font-mono focus:outline-none w-10 h-16 border border-slate-600 rounded-md inline-block text-center text-2xl"
+							/>
+							<div class="bg-slate-400 h-0.5"></div>
+							<input
+								id="denominatorA"
+								type="text"
+								class="font-mono focus:outline-none w-10 h-16 border border-slate-600 rounded-md inline-block text-center text-2xl"
+							/>
+						</div>
+						<select
+							class="appearance-none font-mono text-2xl px-5 py-1 rounded-md border border-slate-600 focus:outline-none"
+							id="operation"
+						>
+							<option value="" selected hidden></option>
+							<option value="add">+</option>
+							<option value="subtract">-</option>
+							<option value="multiply">×</option>
+							<option value="divide">÷</option>
+						</select>
+						<div class="flex flex-col space-y-2">
+							<input
+								id="numeratorB"
+								type="text"
+								class="font-mono focus:outline-none w-10 h-16 border border-slate-600 rounded-md inline-block text-center text-2xl"
+							/>
+							<div class="bg-slate-400 h-0.5"></div>
+							<input
+								id="denominatorB"
+								type="text"
+								class="font-mono focus:outline-none w-10 h-16 border border-slate-600 rounded-md inline-block text-center text-2xl"
+							/>
+						</div>
+					</div>
+					<div class="flex justify-center space-x-4">
+						<button
+							class="w-24 py-1.5 text-lg bg-sky-400 text-white rounded-md text-center cursor-pointer"
+							id="btnSubmit"
+						>
+							Submit
+						</button>
+						<button
+							class="w-24 py-1.5 text-lg bg-red-400 text-white rounded-md text-center cursor-pointer"
+							id="btnClear"
+						>
+							Clear
+						</button>
+					</div>
+				</div>
+				<div class="px-8 w-1/2">
+					<div class="font-mono italic text-lg underline">Result list:</div>
+					<div class="result-list space-y-4 mt-6"></div>
+				</div>
+			</div>
+		</div>`);
+
 const numeratorA = document.querySelector('#numeratorA') as HTMLInputElement;
 const denominatorA = document.querySelector('#denominatorA') as HTMLInputElement;
 const numeratorB = document.querySelector('#numeratorB') as HTMLInputElement;
@@ -143,19 +204,10 @@ btnSubmit.addEventListener('click', function () {
 	}
 	let fractionC = fractionA.calculate(fractionB, operation, true);
 
-	let equationLatex: string = math
-		.parse(`(${fractionA}) ${operation.symbol} (${fractionB}) == ${fractionC}`)
-		.toTex({ parenthesis: 'auto' });
-
-	if (operation.name === 'multiply') {
-		equationLatex = equationLatex.replace('\\cdot', '\\times');
-	} else if (operation.name === 'divide') {
-		equationLatex = equationLatex.replace(':', '\\div');
-	}
+	let equation = `${fractionA} ${operation.symbol} ${fractionB} = ${fractionC}`;
 
 	resultList.insertAdjacentHTML(
 		'afterbegin',
-		`<div class="border border-slate-400 rounde-md bg-white px-4">$$${equationLatex}$$</div>`,
+		`<div class="border border-slate-400 rounde-md bg-white px-4 py-2">${equation}</div>`,
 	);
-	MathJax.typeset();
 });
