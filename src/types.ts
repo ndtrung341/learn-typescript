@@ -103,11 +103,41 @@ function findLecturerByName(
 	callback: (result: Lecturer) => void,
 ) {
 	let result = lecturers.find((i) => i.name === name);
-	if (result) callback(result);
-	else console.log('Not found lecturer');
+	if (result) {
+		callback(result);
+		return <Lecturer>result;
+	} else console.log('Not found lecturer');
 }
 findLecturerByName('Nguyễn Duy Trung', lecturerList, printInfoLecturer);
 
-const calculatorSalary = (salary: number): number => {
-	return salary * 2;
-};
+let waitTimerId;
+function wait(milliseconds: number): Promise<number> {
+	return new Promise((resolve, reject) => {
+		if (milliseconds > 3000) reject('Vượt quá thời gian đợi cho phép rồi 😩');
+		waitTimerId = setTimeout(() => resolve(milliseconds), milliseconds);
+	});
+}
+
+function logError(err: any): never {
+	throw Error(err);
+}
+
+let timeWaiting = 4000;
+wait(timeWaiting)
+	.then((value) => {
+		console.log(`Bạn đã mất ${value / 1000} giây vô nghĩa 😒`);
+		return value / 2;
+	})
+	.then((value) => wait(value))
+	.then((value) => console.log(`Bạn lại mất thêm ${value / 1000}s để thấy cái này 😈`))
+	.catch(logError);
+
+(async function () {
+	try {
+		console.log('Fetching something....');
+		await wait(3100);
+		console.log('Fetch success');
+	} catch (error) {
+		logError(error);
+	}
+})();
