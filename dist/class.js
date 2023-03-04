@@ -52,3 +52,29 @@ let teacher = new Teacher('Nguyen Duy Trung', new Date('2011/11/1'), 'Giảng Vi
 console.log(teacher);
 let student = new Student('Nguyen Duy Trung', new Date('2011/11/1'), 'Kỹ Thuật Phần Mềm');
 console.log(student);
+class MyStorage {
+    constructor() { }
+    static setItem(key, value) {
+        this.data[key] = value;
+    }
+    static getItem(key) {
+        if (key in this.data)
+            return this.data[key];
+        return null;
+    }
+    static removeItem(key) {
+        delete this.data[key];
+    }
+    static keys() {
+        return Object.keys(this.data);
+    }
+    static clear() {
+        this.data = {};
+    }
+}
+MyStorage.data = {};
+MyStorage.setItem('name', 'Duy Trung');
+MyStorage.setItem('name', 'Trung');
+MyStorage.removeItem('name');
+let myName = MyStorage.getItem('name');
+console.log(myName);

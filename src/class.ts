@@ -60,9 +60,34 @@ class Student extends Person {
 }
 
 let teacher = new Teacher('Nguyen Duy Trung', new Date('2011/11/1'), 'Giảng Viên');
-
 console.log(teacher);
 
 let student = new Student('Nguyen Duy Trung', new Date('2011/11/1'), 'Kỹ Thuật Phần Mềm');
-
 console.log(student);
+
+class MyStorage {
+	private static data: { [key: string]: string } = {};
+	private constructor() {}
+	static setItem(key: string, value: string) {
+		this.data[key] = value;
+	}
+	static getItem(key: string) {
+		if (key in this.data) return this.data[key];
+		return null;
+	}
+	static removeItem(key: string) {
+		delete this.data[key];
+	}
+	static keys() {
+		return Object.keys(this.data);
+	}
+	static clear() {
+		this.data = {};
+	}
+}
+
+MyStorage.setItem('name', 'Duy Trung');
+MyStorage.setItem('name', 'Trung');
+MyStorage.removeItem('name');
+let myName = MyStorage.getItem('name');
+console.log(myName);
