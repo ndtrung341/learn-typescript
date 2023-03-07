@@ -128,7 +128,7 @@ wait(timeWaiting)
 		console.log(`Bạn đã mất ${value / 1000} giây vô nghĩa 😒`);
 		return value / 2;
 	})
-	.then((value) => wait(value))
+	.then(wait)
 	.then((value) => console.log(`Bạn lại mất thêm ${value / 1000}s để thấy cái này 😈`))
 	.catch(logError);
 
