@@ -1,3 +1,4 @@
+export {};
 type Subject = 'math' | 'literature' | 'english';
 
 // CLASS DECORATOR
@@ -83,7 +84,7 @@ function positive(msg?: string) {
 		};
 
 		validateParams[propertyName] ??= {};
-		let rules = (validateParams[propertyName][parameterIndex] ??= []);
+		validateParams[propertyName][parameterIndex] ??= [];
 		validateParams[propertyName][parameterIndex].push(rule);
 	};
 }
@@ -97,7 +98,7 @@ function max(max: number, msg?: string) {
 		};
 
 		validateParams[propertyName] ??= {};
-		let rules = (validateParams[propertyName][parameterIndex] ??= []);
+		validateParams[propertyName][parameterIndex] ??= [];
 		validateParams[propertyName][parameterIndex].push(rule);
 	};
 }

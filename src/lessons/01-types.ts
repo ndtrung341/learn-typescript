@@ -1,3 +1,4 @@
+export {};
 // string, number, boolean
 let fullName = 'Nguyen Duy Trung';
 let age: number = 22; // Type Annotations
@@ -6,7 +7,6 @@ let isMale: boolean = true;
 // arrays
 let friends: string[] = ['Minh Tan', 'Trung Son'];
 let hobbies: Array<string> = ['Play game', 'Read comics'];
-let favoriteNumbers: number[] = [1, 2.5];
 
 // object
 const person: {
@@ -22,11 +22,13 @@ const person: {
 	friends: friends,
 	hobbies: hobbies,
 };
+console.log(person);
 
 const circle: { color: string; radius: number } = {
 	color: 'black',
 	radius: 12,
 };
+console.log(circle);
 
 // nested object, tuple, enum, any
 type Title = [string, string]; // tuple;
@@ -86,11 +88,6 @@ function date2String(date: string | Date = new Date()): string {
 console.log(date2String());
 console.log(date2String('2001/11/1'));
 
-// Literal types - tập hợp cùng loại
-type OddNumber = 1 | 3 | 5 | 7 | 9;
-type EvenNumberString = 'zero' | 'two' | 'four' | 'six' | 'eight';
-type OddEvenNumber = OddNumber | EvenNumberString; // union type -> tập hợp khác loại
-
 // Function & callback
 function printInfoLecturer(lecturer: Lecturer): void {
 	console.log(`${lecturer.name}`);
@@ -101,7 +98,7 @@ function findLecturerByName(
 	name: string,
 	lecturers: Lecturer[],
 	callback: (result: Lecturer) => void,
-) {
+): any {
 	let result = lecturers.find((i) => i.name === name);
 	if (result) {
 		callback(result);
@@ -110,7 +107,7 @@ function findLecturerByName(
 }
 findLecturerByName('Nguyễn Duy Trung', lecturerList, printInfoLecturer);
 
-let waitTimerId;
+let waitTimerId: any;
 function wait(milliseconds: number): Promise<number> {
 	return new Promise((resolve, reject) => {
 		if (milliseconds > 3000) reject('Vượt quá thời gian đợi cho phép rồi 😩');

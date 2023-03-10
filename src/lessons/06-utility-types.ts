@@ -1,4 +1,4 @@
-export default 1;
+export {};
 type Person = {
 	name: string;
 	age?: number;

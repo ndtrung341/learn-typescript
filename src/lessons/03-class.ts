@@ -1,3 +1,4 @@
+export {};
 // SINGLETON
 class DhSPKTVL {
 	private static instance: DhSPKTVL;
@@ -37,11 +38,9 @@ class Teacher extends Person {
 	}
 
 	toString(): string {
-		return `Tui tên ${
-			this.name
-		}, sinh ngày ${this.birthdate.toLocaleDateString()}. Tui là một ${this.job} tại trường ${
-			Person.school
-		}`;
+		return `Tui tên ${this.name}, sinh ngày ${this.birthdate.toLocaleDateString()}. Tui là một ${
+			this.job
+		} tại trường ${Person.school}`;
 	}
 }
 

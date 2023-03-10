@@ -1,3 +1,4 @@
+export {};
 interface Rectangle {
 	readonly type: 'rectangle';
 	width: number;
@@ -20,8 +21,23 @@ function isRectangle(shape: Shape): shape is Rectangle {
 }
 
 const calcAreaShape: (shape: Shape) => number = (shape) => {
+	let result = 0;
 	if (isCircle(shape)) {
-		return shape.radius ** 2 * Math.PI;
-	}
-	return shape.length * shape.width;
+		result = shape.radius ** 2 * Math.PI;
+	} else if (isRectangle(shape)) result = shape.length * shape.width;
+	return result;
 };
+
+let shapes: Shape[] = [
+	{
+		type: 'circle',
+		radius: 2,
+	},
+	{
+		type: 'rectangle',
+		length: 2,
+		width: 3,
+	},
+];
+
+shapes.map(calcAreaShape);
