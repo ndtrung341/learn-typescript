@@ -13,6 +13,7 @@
     "vite": "^4.1.0"
   },
   "dependencies": {
+    "ndtrung-form-validator": "^1.0.1",
     "ndtrung-test-lib": "^1.0.0"
   }
 }

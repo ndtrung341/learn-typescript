@@ -1,9 +1,9 @@
 {
 	"compilerOptions": {
-		"target": "ESNext",
+		"target": "ES6",
 		"useDefineForClassFields": true,
-		"module": "ESNext",
-		"lib": ["ESNext", "DOM"],
+		"module": "AMD",
+		"lib": ["ESNext", "DOM", "DOM.Iterable", "ScriptHost"],
 		"moduleResolution": "Node",
 		"strict": true,
 		"resolveJsonModule": true,
@@ -15,8 +15,7 @@
 		"noImplicitReturns": true,
 		"skipLibCheck": true,
 		"experimentalDecorators": true,
-		"strictPropertyInitialization": false,
-		"allowSyntheticDefaultImports": true
+		"strictPropertyInitialization": false
 	},
 	"include": ["src"]
 }
